@@ -25,7 +25,7 @@ public class Map extends MapActivity {
 		setContentView(R.layout.google_map);
 
 		mapView = (MapView) this.findViewById(R.id.mapView);
-		mapView.setBuiltInZoomControls(true);
+		mapView.setBuiltInZoomControls(false);
 
 		mc = mapView.getController();
 		mc.setZoom(20);
@@ -35,10 +35,10 @@ public class Map extends MapActivity {
 				R.drawable.ic_launcher);
 
 		MarkerOverlay itemizedoverlay = new MarkerOverlay(drawable, this);
-		double lat = Double.parseDouble("50.609702");
-		double lon = Double.parseDouble("3.136744");
+		double lat = Double.parseDouble("50.638298");
+		double lon = Double.parseDouble("3.045576");
 		GeoPoint point = new GeoPoint((int) (lat * 1E6), (int) (lon * 1E6));
-		OverlayItem overlayitem = new OverlayItem(point, "M2-Eservices",
+		OverlayItem overlayitem = new OverlayItem(point, "Zoologique",
 				"caonima");
 
 		itemizedoverlay.addOverlay(overlayitem);
