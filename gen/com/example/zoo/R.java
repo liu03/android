@@ -11,75 +11,105 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int b_home=0x7f020000;
-        public static final int b_map=0x7f020001;
-        public static final int b_more=0x7f020002;
-        public static final int b_question=0x7f020003;
-        public static final int b_search=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int main_image=0x7f020006;
-        public static final int menu_home=0x7f020007;
-        public static final int menu_home_selected=0x7f020008;
-        public static final int menu_map=0x7f020009;
-        public static final int menu_map_selected=0x7f02000a;
-        public static final int menu_more=0x7f02000b;
-        public static final int menu_more_over=0x7f02000c;
-        public static final int menu_more_selected=0x7f02000d;
-        public static final int menu_question=0x7f02000e;
-        public static final int menu_question_selected=0x7f02000f;
-        public static final int menu_search=0x7f020010;
-        public static final int menu_search_selected=0x7f020011;
-        public static final int widget_bar_bg=0x7f020012;
-        public static final int widget_bar_bg_n=0x7f020013;
-        public static final int widget_bar_bg_p=0x7f020014;
-        public static final int widget_bar_cut_off=0x7f020015;
+        public static final int b_back=0x7f020000;
+        public static final int b_commentaire=0x7f020001;
+        public static final int b_favori=0x7f020002;
+        public static final int b_home=0x7f020003;
+        public static final int b_map=0x7f020004;
+        public static final int b_more=0x7f020005;
+        public static final int b_question=0x7f020006;
+        public static final int b_search=0x7f020007;
+        public static final int b_share=0x7f020008;
+        public static final int head_back=0x7f020009;
+        public static final int head_back_normal=0x7f02000a;
+        public static final int head_back_selected=0x7f02000b;
+        public static final int ic_launcher=0x7f02000c;
+        public static final int main_image=0x7f02000d;
+        public static final int menu_home=0x7f02000e;
+        public static final int menu_home_selected=0x7f02000f;
+        public static final int menu_map=0x7f020010;
+        public static final int menu_map_selected=0x7f020011;
+        public static final int menu_more=0x7f020012;
+        public static final int menu_more_over=0x7f020013;
+        public static final int menu_more_selected=0x7f020014;
+        public static final int menu_question=0x7f020015;
+        public static final int menu_question_selected=0x7f020016;
+        public static final int menu_search=0x7f020017;
+        public static final int menu_search_selected=0x7f020018;
+        public static final int widget_bar_bg=0x7f020019;
+        public static final int widget_bar_bg_n=0x7f02001a;
+        public static final int widget_bar_bg_p=0x7f02001b;
+        public static final int widget_bar_comment_nor=0x7f02001c;
+        public static final int widget_bar_comment_over=0x7f02001d;
+        public static final int widget_bar_cut_off=0x7f02001e;
+        public static final int widget_bar_favorite_n=0x7f02001f;
+        public static final int widget_bar_favorite_p=0x7f020020;
+        public static final int widget_bar_share_nor=0x7f020021;
+        public static final int widget_bar_share_over=0x7f020022;
+        public static final int widget_head_bg=0x7f020023;
     }
     public static final class id {
+        public static final int buttons=0x7f070008;
         public static final int catagorie=0x7f070002;
+        public static final int commentaires=0x7f070007;
+        public static final int commenter=0x7f07000a;
         public static final int description=0x7f070003;
-        public static final int footer=0x7f07000d;
-        public static final int header=0x7f07000a;
-        public static final int home=0x7f070005;
+        public static final int favori=0x7f070009;
+        public static final int footer=0x7f070017;
+        public static final int header=0x7f070015;
+        public static final int home=0x7f07000c;
         public static final int image=0x7f070000;
-        public static final int imageButton2=0x7f07000b;
-        public static final int imageMain=0x7f07000c;
-        public static final int map=0x7f070007;
-        public static final int mapView=0x7f070004;
-        public static final int menu_settings=0x7f07000e;
-        public static final int more=0x7f070009;
+        public static final int imageMain=0x7f070016;
+        public static final int information=0x7f070004;
+        public static final int introduction=0x7f070006;
+        public static final int main_head_back=0x7f070012;
+        public static final int main_head_share=0x7f070013;
+        public static final int main_head_title=0x7f070014;
+        public static final int main_relativelayout_header=0x7f070011;
+        public static final int map=0x7f07000e;
+        public static final int mapView=0x7f07000b;
+        public static final int menu_settings=0x7f070018;
+        public static final int more=0x7f070010;
         public static final int nom=0x7f070001;
-        public static final int question=0x7f070008;
-        public static final int search=0x7f070006;
+        public static final int question=0x7f07000f;
+        public static final int scrollView=0x7f070005;
+        public static final int search=0x7f07000d;
     }
     public static final class layout {
         public static final int animal_info=0x7f030000;
-        public static final int google_map=0x7f030001;
-        public static final int list=0x7f030002;
-        public static final int main_footer=0x7f030003;
-        public static final int map=0x7f030004;
-        public static final int zoo=0x7f030005;
+        public static final int commentaire=0x7f030001;
+        public static final int google_map=0x7f030002;
+        public static final int list=0x7f030003;
+        public static final int main_footer=0x7f030004;
+        public static final int main_header=0x7f030005;
+        public static final int zoo=0x7f030006;
     }
     public static final class menu {
-        public static final int list=0x7f060000;
-        public static final int map=0x7f060001;
-        public static final int zoo=0x7f060002;
+        public static final int commentaires=0x7f060000;
+        public static final int list=0x7f060001;
+        public static final int map=0x7f060002;
+        public static final int zoo=0x7f060003;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
         public static final int hello_world=0x7f040001;
         public static final int menu_settings=0x7f040002;
+        public static final int title_activity_commentaire=0x7f040005;
         public static final int title_activity_list=0x7f040004;
+        public static final int title_activity_main=0x7f040006;
         public static final int title_activity_map=0x7f040003;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -102,5 +132,6 @@ public final class R {
         public static final int ic_laucher=0x7f050003;
         public static final int main_footbar_button=0x7f050005;
         public static final int main_footbar_cutline=0x7f050002;
+        public static final int main_head_title=0x7f050006;
     }
 }

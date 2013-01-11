@@ -12,6 +12,7 @@ public class Zoo extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.zoo);
+		AppManager.getAppManager().addActivity(this);
 	}
 
 	@Override
@@ -22,11 +23,15 @@ public class Zoo extends Activity {
 	}
 	
 	public void toMap(View vue){
-		startActivity(new Intent(this, Map.class));
+		startActivity(new Intent(this, List.class));
+		AppManager.getAppManager().finishActivity(this);
+		finish();
 	}
 	
 	public void toList(View vue){
 		startActivity(new Intent(this, List.class));
+		AppManager.getAppManager().finishActivity(this);
+		finish();
 	}
 
 }

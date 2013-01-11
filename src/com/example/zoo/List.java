@@ -2,6 +2,7 @@ package com.example.zoo;
 
 import android.os.Bundle;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -22,6 +23,7 @@ public class List extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list);
 		bd = new BD(this);
+		AppManager.getAppManager().addActivity(this);
 	}
 
 	protected void onStart() {
@@ -65,7 +67,8 @@ public class List extends ListActivity {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub	public void toList(View vue){
+				toCommentaire();
 
 				return false;
 			}
@@ -82,6 +85,12 @@ public class List extends ListActivity {
 			}
 
 		});
+	}
+	
+	public void toCommentaire(){
+		startActivity(new Intent(this, Commentaire.class));
+		AppManager.getAppManager().finishActivity(this);
+		finish();
 	}
 
 	protected void onDestroy() {

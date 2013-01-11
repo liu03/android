@@ -6,5 +6,7 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_list">List</string>
+    <string name="title_activity_commentaire">Commentaire</string>
+    <string name="title_activity_main">Zoologique</string>
 
 </resources>

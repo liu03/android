@@ -5,22 +5,9 @@
     android:background="#000000"
     tools:context=".Zoo" >
 
-    <RelativeLayout
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" >
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:src="@android:drawable/btn_star" />
-    </RelativeLayout>
-
+    <include android:id="@+id/header"
+        layout="@layout/main_header"   
+        android:layout_alignParentTop="true" />  
     <ImageView
         android:id="@+id/imageMain"
         android:layout_width="fill_parent"
