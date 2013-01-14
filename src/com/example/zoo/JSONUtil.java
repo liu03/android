@@ -17,6 +17,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.params.ConnRouteParams;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.json.JSONException;  
 import org.json.JSONObject;  
@@ -39,23 +40,25 @@ public class JSONUtil {
         
         String result = "";  
        try {  
-    	   String proxy = "cache.univ-lille1.fr";
-    	   int port = 3128;
-    	   HttpHost httpHost = new HttpHost(proxy, port);
-           HttpParams httpParams = new BasicHttpParams();
-           httpParams.setParameter(ConnRouteParams.DEFAULT_PROXY, httpHost);
-           HttpClient httpClient = new DefaultHttpClient(httpParams);  
-           HttpGet httpGet = new HttpGet(urlPath);
-//           HttpPost httpPost = new HttpPost(URLEncoder.encode(urlPath)); 
-           HttpResponse response = httpClient.execute(httpGet);  
-           HttpEntity entity = response.getEntity();  
-           is = entity.getContent();  
-           
-//           HttpClient httpClient = new DefaultHttpClient();  
-//           HttpPost httpPost = new HttpPost(urlPath);   
-//           HttpResponse response = httpClient.execute(httpPost);  
+//    	   String proxy = "cache.univ-lille1.fr";
+//    	   int port = 3128;
+//    	   HttpHost httpHost = new HttpHost(proxy, port);
+//           HttpParams httpParams = new BasicHttpParams();
+//           httpParams.setParameter(ConnRouteParams.DEFAULT_PROXY, httpHost);
+//           HttpClient httpClient = new DefaultHttpClient(httpParams);  
+//           HttpGet httpGet = new HttpGet(urlPath);
+////           HttpPost httpPost = new HttpPost(URLEncoder.encode(urlPath)); 
+//           HttpResponse response = httpClient.execute(httpGet);  
 //           HttpEntity entity = response.getEntity();  
 //           is = entity.getContent();  
+
+           HttpParams httpParams = new BasicHttpParams();
+           HttpConnectionParams.setConnectionTimeout(httpParams, 5000);
+           HttpClient httpClient = new DefaultHttpClient(httpParams);  
+           HttpPost httpPost = new HttpPost(urlPath);
+           HttpResponse response = httpClient.execute(httpPost);  
+           HttpEntity entity = response.getEntity();  
+           is = entity.getContent();  
        } catch (Exception e) {  
            // TODO Auto-generated catch block  
            Log.e("log_tag", "Error in http connection "+e.toString());  

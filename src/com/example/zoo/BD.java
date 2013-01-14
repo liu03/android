@@ -16,7 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class BD extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "zoo.bd";
-	private static final String BASE_URL = "http://webtp.fil.univ-lille1.fr/~liu/a.php";
+	private static final String BASE_URL = "http://10.188.15.40/a.php";
 
 	public static final String KEY_ID = "_id";
 	public static final String KEY_NOM = "nom";
@@ -27,14 +27,17 @@ public class BD extends SQLiteOpenHelper {
 	private static final String SQLITE_TABLE = "animaux";
 
 	private SQLiteDatabase bd;
+	private Context context;
 
 	public BD(Context context, String name, CursorFactory factory, int version) {
 		super(context, name, factory, version);
+		this.context = context;
 		// TODO Auto-generated constructor stub
 	}
 
 	public BD(Context ctx) {
 		super(ctx, DATABASE_NAME, null, 1);
+		this.context = ctx;
 		bd = getWritableDatabase();
 	}
 
@@ -129,13 +132,15 @@ public class BD extends SQLiteOpenHelper {
 	}
 
 	public Cursor getAnimalsToCursor() {
-		Thread t = new Thread(listRun);
-		t.start();
-		try {
-			t.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (InternetAdapter.isNetWorkAvailable(context)) {
+			Thread t = new Thread(listRun);
+			t.start();
+			try {
+				t.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		Cursor curseur = bd.query(SQLITE_TABLE, null, null, null, null, null,
 				"nom, categorie, image, description");
@@ -192,7 +197,7 @@ public class BD extends SQLiteOpenHelper {
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			check(BASE_URL);
+				check(BASE_URL);
 		}
 	};
 

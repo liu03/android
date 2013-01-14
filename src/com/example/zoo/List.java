@@ -1,5 +1,6 @@
 package com.example.zoo;
 
+
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -23,7 +24,7 @@ public class List extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list);
 		bd = new BD(this);
-		AppManager.getAppManager().addActivity(this);
+		//AppManager.getAppManager().addActivity(this);
 	}
 
 	protected void onStart() {
@@ -57,7 +58,7 @@ public class List extends ListActivity {
 						public boolean setViewValue(View arg0, Cursor arg1,
 								int arg2) {
 							// TODO Auto-generated method stub
-							return false;
+							return false;                               
 						}
 
 				        });
@@ -68,7 +69,12 @@ public class List extends ListActivity {
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub	public void toList(View vue){
-				toCommentaire();
+
+				Intent intention = new Intent(List.this, CommentaireActivity.class);
+				intention.putExtra("id",(int)parent.getItemIdAtPosition(position));
+				startActivity(intention);
+//				AppManager.getAppManager().finishActivity(this);
+//				finish();
 
 				return false;
 			}
@@ -85,12 +91,6 @@ public class List extends ListActivity {
 			}
 
 		});
-	}
-	
-	public void toCommentaire(){
-		startActivity(new Intent(this, Commentaire.class));
-		AppManager.getAppManager().finishActivity(this);
-		finish();
 	}
 
 	protected void onDestroy() {

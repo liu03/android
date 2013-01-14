@@ -23,7 +23,7 @@ public class Zoo extends Activity {
 	}
 	
 	public void toMap(View vue){
-		startActivity(new Intent(this, List.class));
+		startActivity(new Intent(this, Map.class));
 		AppManager.getAppManager().finishActivity(this);
 		finish();
 	}

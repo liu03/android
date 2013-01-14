@@ -5,6 +5,7 @@
     android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -35,8 +36,12 @@
             android:label="@string/title_activity_list" >
         </activity>
         <activity
-            android:name="com.example.zoo.Commentaire"
+            android:name="com.example.zoo.CommentaireActivity"
             android:label="@string/title_activity_commentaire" >
+        </activity>
+        <activity
+            android:name="com.example.zoo.Commenter"
+            android:label="@string/title_activity_commenter" >
         </activity>
     </application>
 
