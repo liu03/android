@@ -50,33 +50,35 @@ public final class R {
     }
     public static final class id {
         public static final int auteur=0x7f070005;
-        public static final int buttons=0x7f070009;
+        public static final int buttons=0x7f07000c;
+        public static final int cat_animal=0x7f07000a;
         public static final int catagorie=0x7f070002;
-        public static final int commentaire=0x7f07000c;
-        public static final int commenter=0x7f07000b;
+        public static final int commentaire=0x7f07000e;
+        public static final int commenter=0x7f07000d;
         public static final int contenu=0x7f070004;
         public static final int description=0x7f070003;
-        public static final int enregistrer=0x7f07000d;
-        public static final int favori=0x7f07000a;
-        public static final int footer=0x7f07001a;
-        public static final int header=0x7f070018;
-        public static final int home=0x7f07000f;
+        public static final int enregistrer=0x7f07000f;
+        public static final int favori=0x7f070009;
+        public static final int footer=0x7f07001c;
+        public static final int header=0x7f07001a;
+        public static final int home=0x7f070011;
         public static final int image=0x7f070000;
-        public static final int imageMain=0x7f070019;
+        public static final int imageMain=0x7f07001b;
         public static final int information=0x7f070006;
-        public static final int introduction=0x7f070008;
-        public static final int main_head_back=0x7f070015;
-        public static final int main_head_share=0x7f070016;
-        public static final int main_head_title=0x7f070017;
-        public static final int main_relativelayout_header=0x7f070014;
-        public static final int map=0x7f070011;
-        public static final int mapView=0x7f07000e;
-        public static final int menu_settings=0x7f07001b;
-        public static final int more=0x7f070013;
+        public static final int introduction=0x7f07000b;
+        public static final int main_head_back=0x7f070017;
+        public static final int main_head_share=0x7f070018;
+        public static final int main_head_title=0x7f070019;
+        public static final int main_relativelayout_header=0x7f070016;
+        public static final int map=0x7f070013;
+        public static final int mapView=0x7f070010;
+        public static final int menu_settings=0x7f07001d;
+        public static final int more=0x7f070015;
         public static final int nom=0x7f070001;
-        public static final int question=0x7f070012;
+        public static final int nom_animal=0x7f070008;
+        public static final int question=0x7f070014;
         public static final int scrollView=0x7f070007;
-        public static final int search=0x7f070010;
+        public static final int search=0x7f070012;
     }
     public static final class layout {
         public static final int animal_info=0x7f030000;

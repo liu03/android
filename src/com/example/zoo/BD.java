@@ -16,13 +16,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class BD extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "zoo.bd";
-	private static final String BASE_URL = "http://10.188.15.40/a.php";
+	private static final String BASE_URL = "http://10.188.15.39/a.php";
 
 	public static final String KEY_ID = "_id";
 	public static final String KEY_NOM = "nom";
 	public static final String KEY_CATEGORIE = "categorie";
 	public static final String KEY_IMAGE = "image";
 	public static final String KEY_DESCRIPTION = "description";
+	public static final String KEY_FAVORI = "favori";
 
 	private static final String SQLITE_TABLE = "animaux";
 
@@ -48,11 +49,11 @@ public class BD extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		db.execSQL("CREATE TABLE " + SQLITE_TABLE + " ( " + KEY_ID
+		bd.execSQL("CREATE TABLE " + SQLITE_TABLE + " ( " + KEY_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NOM
 				+ " TEXT NOT NULL," + KEY_CATEGORIE + " TEXT NOT NULL,"
 				+ KEY_IMAGE + " TEXT NOT NULL," + KEY_DESCRIPTION
-				+ " TEXT NOT NULL);");
+				+ " TEXT NOT NULL," + KEY_FAVORI + " INTEGER NOT NULL);");
 	}
 
 	@Override
@@ -67,12 +68,12 @@ public class BD extends SQLiteOpenHelper {
 			fermeture();
 
 		bd = getWritableDatabase();
-		bd.execSQL("DROP TABLE " + SQLITE_TABLE + ";");
+		bd.execSQL("DROP TABLE IF EXISTS " + SQLITE_TABLE + ";");
 		bd.execSQL("CREATE TABLE " + SQLITE_TABLE + " ( " + KEY_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NOM
 				+ " TEXT NOT NULL," + KEY_CATEGORIE + " TEXT NOT NULL,"
 				+ KEY_IMAGE + " TEXT NOT NULL," + KEY_DESCRIPTION
-				+ " TEXT NOT NULL);");
+				+ " TEXT NOT NULL," + KEY_FAVORI + " INTEGER NOT NULL);");
 	}
 
 	public void fermeture() {
@@ -87,6 +88,7 @@ public class BD extends SQLiteOpenHelper {
 		valeurs.put(KEY_CATEGORIE, animal.getCategorie());
 		valeurs.put(KEY_IMAGE, animal.getImage());
 		valeurs.put(KEY_DESCRIPTION, animal.getDescription());
+		valeurs.put(KEY_FAVORI, animal.getFavori());
 		return bd.insert(SQLITE_TABLE, null, valeurs);
 	}
 
@@ -96,6 +98,7 @@ public class BD extends SQLiteOpenHelper {
 		valeurs.put(KEY_CATEGORIE, animal.getCategorie());
 		valeurs.put(KEY_IMAGE, animal.getImage());
 		valeurs.put(KEY_DESCRIPTION, animal.getDescription());
+		valeurs.put(KEY_FAVORI, animal.getFavori());
 		return bd.update(SQLITE_TABLE, valeurs,
 				KEY_ID + " = " + animal.getId(), null);
 	}
@@ -118,7 +121,7 @@ public class BD extends SQLiteOpenHelper {
 	public ArrayList<Animal> getAnimals() {
 		ArrayList<Animal> liste = new ArrayList<Animal>();
 		Cursor curseur = bd.query(SQLITE_TABLE, null, null, null, null, null,
-				"nom, categorie, image, description");
+				"nom, categorie, image, description,favori");
 		if (curseur.getCount() == 0)
 			return liste;
 		else {
@@ -143,7 +146,7 @@ public class BD extends SQLiteOpenHelper {
 			}
 		}
 		Cursor curseur = bd.query(SQLITE_TABLE, null, null, null, null, null,
-				"nom, categorie, image, description");
+				"nom, categorie, image, description,favori");
 		if (curseur != null)
 			curseur.moveToFirst();
 		return curseur;
@@ -155,7 +158,9 @@ public class BD extends SQLiteOpenHelper {
 		animal.setId(curseur.getInt(0));
 		animal.setNom(curseur.getString(1));
 		animal.setCategorie(curseur.getString(2));
-		animal.setDescription(curseur.getString(3));
+		animal.setImage(curseur.getString(3));
+		animal.setDescription(curseur.getString(4));
+		animal.setFavori(curseur.getInt(5));
 		return animal;
 	}
 
@@ -172,12 +177,14 @@ public class BD extends SQLiteOpenHelper {
 				String categorie = childs.getString("categorie");
 				String image = childs.getString("image");
 				String description = childs.getString("description");
+				int favori = childs.getInt("favori");
 
 				ani.setId(_id);
 				ani.setNom(nom);
 				ani.setImage(image);
 				ani.setCategorie(categorie);
 				ani.setDescription(description);
+				ani.setFavori(favori);
 				if (getAnimal(_id) != null)
 					miseAJour(ani);
 				else
@@ -197,7 +204,7 @@ public class BD extends SQLiteOpenHelper {
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-				check(BASE_URL);
+			check(BASE_URL);
 		}
 	};
 

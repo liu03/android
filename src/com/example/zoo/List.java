@@ -24,7 +24,7 @@ public class List extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list);
 		bd = new BD(this);
-		//AppManager.getAppManager().addActivity(this);
+//		AppManager.getAppManager().addActivity(this);
 	}
 
 	protected void onStart() {
@@ -71,10 +71,10 @@ public class List extends ListActivity {
 				// TODO Auto-generated method stub	public void toList(View vue){
 
 				Intent intention = new Intent(List.this, CommentaireActivity.class);
-				intention.putExtra("id",(int)parent.getItemIdAtPosition(position));
+				intention.putExtra("id",(int)(parent.getItemIdAtPosition(position)));
 				startActivity(intention);
-//				AppManager.getAppManager().finishActivity(this);
-//				finish();
+//				AppManager.getAppManager().finishActivity(me);
+				finish();
 
 				return false;
 			}

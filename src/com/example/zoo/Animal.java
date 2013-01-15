@@ -6,6 +6,7 @@ public class Animal {
 	private String categorie;
 	private String image;
 	private String description;
+	private int favori;
 
 	public String getNom() {
 		// TODO Auto-generated method stub
@@ -29,6 +30,11 @@ public class Animal {
 	public String getImage(){
 		return image;
 	}
+	
+	public int getFavori(){
+		return favori;
+	}
+	
 	
 	public void setId(int id) {
 		// TODO Auto-generated method stub
@@ -56,6 +62,11 @@ public class Animal {
 	public void setImage(String image) {
 		// TODO Auto-generated method stub
 		this.image = image;
+	}
+	
+	public void setFavori(int favori) {
+		// TODO Auto-generated method stub
+		this.favori = favori;
 	}
 
 }
