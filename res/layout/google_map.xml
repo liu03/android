@@ -10,5 +10,12 @@
       android:layout_height="fill_parent"
       android:clickable="true"
       android:apiKey="0sptc0sOZ-0ppbwA-g8gbHMIG-D9aZtsFQjcWhg" />
+  
+   <ZoomControls
+        android:id="@+id/zoomcontrols"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

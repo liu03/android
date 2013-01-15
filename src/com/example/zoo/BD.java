@@ -16,7 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class BD extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "zoo.bd";
-	private static final String BASE_URL = "http://10.188.15.39/a.php";
+	private static final String BASE_URL = "http://10.19.3.57/a.php";
 
 	public static final String KEY_ID = "_id";
 	public static final String KEY_NOM = "nom";
