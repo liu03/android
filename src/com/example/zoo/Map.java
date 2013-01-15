@@ -13,11 +13,14 @@ import android.os.Bundle;
 import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ZoomControls;
 
 public class Map extends MapActivity {
 
 	private MapView mapView;
 	private MapController mc;
+	private ZoomControls zoomControls;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,28 +28,43 @@ public class Map extends MapActivity {
 		setContentView(R.layout.google_map);
 
 		mapView = (MapView) this.findViewById(R.id.mapView);
-		mapView.setBuiltInZoomControls(false);
-
-		mc = mapView.getController();
-		mc.setZoom(20);
-
-		List<Overlay> mapOverlays = mapView.getOverlays();
-		Drawable drawable = this.getResources().getDrawable(
-				R.drawable.ic_launcher);
-
-		MarkerOverlay itemizedoverlay = new MarkerOverlay(drawable, this);
-		double lat = Double.parseDouble("50.638298");
-		double lon = Double.parseDouble("3.045576");
-		GeoPoint point = new GeoPoint((int) (lat * 1E6), (int) (lon * 1E6));
-		OverlayItem overlayitem = new OverlayItem(point, "Zoologique",
-				"caonima");
-
+    	mc = mapView.getController();
+    	
+    	mapView.setSatellite(true);
+    	mc.setZoom(20);
+    	mapView.setBuiltInZoomControls(false);
+    	
+    	List<Overlay> mapOverlays = mapView.getOverlays();
+    	Drawable drawable = this.getResources().getDrawable(R.drawable.map_pin_48);
+    	
+    	MarkerOverlay itemizedoverlay = new MarkerOverlay(drawable, this);
+    	double lat = Double.parseDouble("50.638341");
+    	double lon = Double.parseDouble("3.045562");
+    	GeoPoint point = new GeoPoint((int) (lat * 1E6), (int) (lon * 1E6));
+		OverlayItem overlayitem = new OverlayItem(point, "Zoologique","caonima");
+    	
 		itemizedoverlay.addOverlay(overlayitem);
 		mapOverlays.add(itemizedoverlay);
 		mc.animateTo(point);
-
 	}
 
+    @Override
+    protected void onStart(){
+    	super.onStart();
+    	
+	   	zoomControls = (ZoomControls) findViewById(R.id.zoomcontrols);
+    	zoomControls.setOnZoomInClickListener(new View.OnClickListener() {
+    		public void onClick(View v) {
+    			mapView.getController().zoomIn();
+    		}
+    	});
+    	zoomControls.setOnZoomOutClickListener(new View.OnClickListener() {
+    		public void onClick(View v) {
+    			mapView.getController().zoomOut();
+    		}
+    	});
+    }
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -60,15 +78,16 @@ public class Map extends MapActivity {
 		return false;
 	}
 
-	protected boolean onKeydown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-			mapView.setSatellite(true);
-			return true;
-		}else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-			mapView.setSatellite(false);
-			return true;
-		}
-		return super.onKeyDown(keyCode, event); 
-	}
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+    	if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
+    		mapView.setSatellite(true);
+    		return true;
+    	}else if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+    		mapView.setSatellite(false);
+    		return true;
+    	}
+    	return super.onKeyDown(keyCode, event);
+    }
 
 }
