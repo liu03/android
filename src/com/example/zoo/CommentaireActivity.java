@@ -1,6 +1,20 @@
 package com.example.zoo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -20,6 +34,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.TextView;
 
+@SuppressLint("NewApi")
 public class CommentaireActivity extends ListActivity {
 
 	private CommentaireAdapter ca;
@@ -29,6 +44,8 @@ public class CommentaireActivity extends ListActivity {
 	private TextView favori;
 	private TextView categorie;
 	private TextView description;
+	private int id;
+	private Animal animal;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +57,13 @@ public class CommentaireActivity extends ListActivity {
 		favori = (TextView) findViewById(R.id.favori);
 		categorie = (TextView) findViewById(R.id.cat_animal);
 		description = (TextView) findViewById(R.id.introduction);
+
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+				.permitAll().build();
+
+		StrictMode.setThreadPolicy(policy);
 	}
 
-	
 	protected void onStart() {
 		super.onStart();
 
@@ -52,13 +73,12 @@ public class CommentaireActivity extends ListActivity {
 	private void displayListView() {
 		// TODO Auto-generated method stub
 		Bundle donnees = getIntent().getExtras();
-		int id = donnees.getInt("id");
+		id = donnees.getInt("id");
 
-		System.out.println("here"+id);
-		Animal animal = bd.getAnimal(id);
+		animal = bd.getAnimal(id);
 
 		nom.setText(animal.getNom());
-		favori.setText(String.valueOf(animal.getFavori())+" favoris");
+		favori.setText(String.valueOf(animal.getFavori()) + " favoris");
 		categorie.setText(animal.getCategorie());
 		description.setText(animal.getDescription());
 		Cursor cursor = ca.getCommentairesToCursor(id);
@@ -91,13 +111,51 @@ public class CommentaireActivity extends ListActivity {
 
 	public void toComment(View vue) {
 		Intent intention = new Intent(this, Commenter.class);
-		intention.putExtra("id",(int)(getIntent().getExtras().getInt("id")));
+		intention.putExtra("id", (int) (getIntent().getExtras().getInt("id")));
 		startActivity(intention);
-		//AppManager.getAppManager().finishActivity(this);
+		// AppManager.getAppManager().finishActivity(this);
 		finish();
 	}
 
 	public void toFavori(View vue) {
+		Thread t = new Thread() {
+			HttpPost hp = new HttpPost(Commenter.URL);
+
+			public void run() {
+				String res = "";
+
+				List<NameValuePair> params = new ArrayList<NameValuePair>();
+				// Add Post Data
+				params.add(new BasicNameValuePair("action", "favori"));
+				params.add(new BasicNameValuePair("animal", String.valueOf(id)));
+				try {
+					UrlEncodedFormEntity urf = new UrlEncodedFormEntity(params,
+							HTTP.UTF_8);
+					hp.setEntity(urf);
+					HttpResponse hr = new DefaultHttpClient().execute(hp);
+
+					if (hr.getStatusLine().getStatusCode() == 200) {
+						res += EntityUtils.toString(hr.getEntity());
+					} else {
+						res += "Error State:" + hr.getStatusLine().toString();
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		t.run();
+		try {
+			t.join();
+			bd.update();
+			favori.setText(String.valueOf(animal.getFavori()) + " favoris");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		new AlertDialog.Builder(me)
 				.setTitle("Validation")
 				.setMessage("Votre manipulation ont bien enregistré")
@@ -110,6 +168,12 @@ public class CommentaireActivity extends ListActivity {
 								// TODO Auto-generated method stub
 							}
 						}).show();
+	}
+
+	protected void onDestroy() {
+		bd.fermeture();
+		ca.fermeture();
+		super.onDestroy();
 	}
 
 }

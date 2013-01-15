@@ -16,7 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class BD extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "zoo.bd";
-	private static final String BASE_URL = "http://10.19.3.57/a.php";
+	private static final String BASE_URL = "http://10.19.0.238/a.php";
 
 	public static final String KEY_ID = "_id";
 	public static final String KEY_NOM = "nom";
@@ -39,7 +39,8 @@ public class BD extends SQLiteOpenHelper {
 	public BD(Context ctx) {
 		super(ctx, DATABASE_NAME, null, 1);
 		this.context = ctx;
-		bd = getWritableDatabase();
+		System.out.println(ctx==null);
+		bd = this.getWritableDatabase();
 	}
 
 	public String getBDDName() {
@@ -49,6 +50,7 @@ public class BD extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
+		System.out.println(bd==null);
 		bd.execSQL("CREATE TABLE " + SQLITE_TABLE + " ( " + KEY_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NOM
 				+ " TEXT NOT NULL," + KEY_CATEGORIE + " TEXT NOT NULL,"
@@ -135,6 +137,17 @@ public class BD extends SQLiteOpenHelper {
 	}
 
 	public Cursor getAnimalsToCursor() {
+		update();
+		Cursor curseur = bd.query(SQLITE_TABLE, null, null, null, null, null,
+				"nom, categorie, image, description,favori");
+		if (curseur != null)
+			curseur.moveToFirst();
+		return curseur;
+	}
+
+	public void update() {
+		// TODO Auto-generated method stub
+
 		if (InternetAdapter.isNetWorkAvailable(context)) {
 			Thread t = new Thread(listRun);
 			t.start();
@@ -145,11 +158,6 @@ public class BD extends SQLiteOpenHelper {
 				e.printStackTrace();
 			}
 		}
-		Cursor curseur = bd.query(SQLITE_TABLE, null, null, null, null, null,
-				"nom, categorie, image, description,favori");
-		if (curseur != null)
-			curseur.moveToFirst();
-		return curseur;
 	}
 
 	public Animal curseurToAnimal(Cursor curseur) {
