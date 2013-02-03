@@ -33,7 +33,7 @@ public class AppStart extends Activity {
 			
 		});
     }
-    
+     
     private void redirectTo(){        
         Intent intent = new Intent(this, Zoo.class);
         startActivity(intent);
