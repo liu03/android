@@ -26,6 +26,7 @@ public class Map extends MapActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.google_map);
+		AppManager.getAppManager().addActivity(this);
 
 		mapView = (MapView) this.findViewById(R.id.mapView);
     	mc = mapView.getController();

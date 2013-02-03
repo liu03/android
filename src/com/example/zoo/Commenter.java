@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Commenter extends Activity {
-	static final String URL = "http://10.19.0.238/gestion.php";
+	static final String URL = "http://10.188.15.222/gestion.php";
 
 	private Commenter me = this;
 	private EditText tnom;

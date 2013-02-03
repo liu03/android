@@ -16,7 +16,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 public class CommentaireAdapter extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "zoo.bd";
-	private static final String BASE_URL = "http://10.19.0.238/b.php";
+	private static final String BASE_URL = "http://10.188.15.222/b.php";
 
 	public static final String KEY_ID = "_id";
 	public static final String KEY_UTILISATEUR = "utilisateur";

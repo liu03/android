@@ -1,7 +1,9 @@
 package com.example.zoo;
 
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,14 +25,26 @@ public class List extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list);
+		AppManager.getAppManager().addActivity(this);
 		bd = new BD(this);
-//		AppManager.getAppManager().addActivity(this);
 	}
 
 	protected void onStart() {
 		super.onStart();
 
 		displayListView();
+	}
+	
+	public void toShare(View vue){
+		Uri shareonfb = Uri.parse("http://www.facebook.com/sharer/sharer.php?u=http://www.mairie-lille.fr/cms/accueil/sport-loisirs/zoo-lille&t=Parc zoologique de Lille");
+		Intent intent = new Intent(Intent.ACTION_VIEW, shareonfb);
+		startActivity(intent);
+	}
+	
+	public void toBack(View vue){
+		Activity previousActivity = AppManager.getAppManager().previousActivity();
+		Intent intent = new Intent(this, previousActivity.getClass());
+		startActivity(intent);
 	}
 
 	private void displayListView() {
@@ -74,7 +88,7 @@ public class List extends ListActivity {
 				intention.putExtra("id",(int)(parent.getItemIdAtPosition(position)));
 				startActivity(intention);
 //				AppManager.getAppManager().finishActivity(me);
-				finish();
+//				finish();
 
 				return false;
 			}

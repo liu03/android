@@ -9,5 +9,6 @@
     <string name="title_activity_commentaire">Commentaire</string>
     <string name="title_activity_main">Zoologique</string>
     <string name="title_activity_commenter">Commenter</string>
+    <string name="title_activity_question">QuestionActivity</string>
 
 </resources>

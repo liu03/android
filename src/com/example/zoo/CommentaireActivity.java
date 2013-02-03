@@ -114,7 +114,7 @@ public class CommentaireActivity extends ListActivity {
 		intention.putExtra("id", (int) (getIntent().getExtras().getInt("id")));
 		startActivity(intention);
 		// AppManager.getAppManager().finishActivity(this);
-		finish();
+		//finish();
 	}
 
 	public void toFavori(View vue) {
@@ -158,7 +158,7 @@ public class CommentaireActivity extends ListActivity {
 		
 		new AlertDialog.Builder(me)
 				.setTitle("Validation")
-				.setMessage("Votre manipulation ont bien enregistrÃ©")
+				.setMessage("Votre manipulation ont bien enregistrée")
 				.setPositiveButton("Fermer",
 						new DialogInterface.OnClickListener() {
 

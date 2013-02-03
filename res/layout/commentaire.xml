@@ -4,11 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <include
+        android:id="@+id/header"
+        android:layout_alignParentTop="true"
+        layout="@layout/main_header" />
+
     <LinearLayout
         android:id="@+id/information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" >
+        android:layout_below="@+id/header" >
 
         <ImageView
             android:id="@+id/image"
@@ -41,27 +46,27 @@
                     android:id="@+id/favori"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/nom_animal"
                     android:textColor="#FFA5FF"
-                    android:textSize="16sp"
-                    android:layout_below="@+id/nom_animal" >
+                    android:textSize="16sp" >
                 </TextView>
 
                 <TextView
                     android:id="@+id/cat_animal"
-                    android:textColor="#FFA500"
-                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/favori" >
+                    android:layout_below="@+id/favori"
+                    android:textColor="#FFA500"
+                    android:textSize="18sp" >
                 </TextView>
 
                 <TextView
                     android:id="@+id/introduction"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/cat_animal" >
+                    android:layout_below="@+id/cat_animal"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" >
                 </TextView>
             </RelativeLayout>
         </ScrollView>

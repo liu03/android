@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.16"
 		style="@style/main_footbar_button"
+		android:onClick="toQuestion"
         android:src="@drawable/b_question" />
     
     <ImageView

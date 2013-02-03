@@ -4,14 +4,20 @@
     android:layout_height="match_parent"
     tools:context=".TPGoogleMapActivity" >
 
-  <com.google.android.maps.MapView
-      android:id="@+id/mapView"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      android:clickable="true"
-      android:apiKey="0sptc0sOZ-0ppbwA-g8gbHMIG-D9aZtsFQjcWhg" />
-  
-   <ZoomControls
+    <include
+        android:id="@+id/header"
+        android:layout_alignParentTop="true"
+        layout="@layout/main_header" />
+
+    <com.google.android.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/header"
+        android:apiKey="0sptc0sOZ-0ppbwA-g8gbHMIG-D9aZtsFQjcWhg"
+        android:clickable="true" />
+
+    <ZoomControls
         android:id="@+id/zoomcontrols"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

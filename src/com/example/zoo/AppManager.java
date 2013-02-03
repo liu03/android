@@ -7,7 +7,6 @@ import android.app.ActivityManager;
 import android.content.Context;
 
 /**
- * 应用程序Activity管理类：用于Activity管理和应用程序退出
  * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
@@ -35,6 +34,15 @@ public class AppManager {
 
 	public Activity currentActivity(){
 		Activity activity=activityStack.lastElement();
+		return activity;
+	}
+	
+	public Activity previousActivity(){
+		int size = activityStack.size();
+		if(size == 1 || size == 0){
+			return currentActivity();
+		}
+		Activity activity=activityStack.get(size-2);
 		return activity;
 	}
 
