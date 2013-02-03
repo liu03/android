@@ -9,7 +9,10 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -65,6 +68,18 @@ public class Map extends MapActivity {
     		}
     	});
     }
+    
+	public void toShare(View vue){
+		Uri shareonfb = Uri.parse("http://www.facebook.com/sharer/sharer.php?u=http://www.mairie-lille.fr/cms/accueil/sport-loisirs/zoo-lille&t=Parc zoologique de Lille");
+		Intent intent = new Intent(Intent.ACTION_VIEW, shareonfb);
+		startActivity(intent);
+	}
+	
+	public void toBack(View vue){
+		Activity previousActivity = AppManager.getAppManager().previousActivity();
+		Intent intent = new Intent(this, previousActivity.getClass());
+		startActivity(intent);
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

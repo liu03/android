@@ -9,8 +9,10 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -34,6 +36,8 @@ public class Commenter extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.commenter);
+		AppManager.getAppManager().addActivity(this);
+		
 		tnom = (EditText) findViewById(R.id.nom);
 		tcom = (EditText) findViewById(R.id.commentaire);
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -41,6 +45,18 @@ public class Commenter extends Activity {
 
 		StrictMode.setThreadPolicy(policy);
 	}
+	
+	public void toShare(View vue){
+		Uri shareonfb = Uri.parse("http://www.facebook.com/sharer/sharer.php?u=http://www.mairie-lille.fr/cms/accueil/sport-loisirs/zoo-lille&t=Parc zoologique de Lille");
+		Intent intent = new Intent(Intent.ACTION_VIEW, shareonfb);
+		startActivity(intent);
+	}
+	
+	public void toBack(View vue){
+		Activity previousActivity = AppManager.getAppManager().previousActivity();
+		Intent intent = new Intent(this, previousActivity.getClass());
+		startActivity(intent);
+	}	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -123,7 +139,7 @@ public class Commenter extends Activity {
 										CommentaireActivity.class);
 								intention.putExtra("id", id);
 								startActivity(intention);
-								// AppManager.getAppManager().finishActivity(me);
+								AppManager.getAppManager().finishActivity(me);
 								finish();
 								// TODO Auto-generated method stub
 							}

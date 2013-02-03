@@ -12,6 +12,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.annotation.SuppressLint;
@@ -51,6 +52,8 @@ public class CommentaireActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.commentaire);
+		AppManager.getAppManager().addActivity(this);
+		
 		bd = new BD(this);
 		ca = new CommentaireAdapter(this);
 		nom = (TextView) findViewById(R.id.nom_animal);
@@ -69,6 +72,18 @@ public class CommentaireActivity extends ListActivity {
 
 		displayListView();
 	}
+	
+	public void toShare(View vue){
+		Uri shareonfb = Uri.parse("http://www.facebook.com/sharer/sharer.php?u=http://www.mairie-lille.fr/cms/accueil/sport-loisirs/zoo-lille&t=Parc zoologique de Lille");
+		Intent intent = new Intent(Intent.ACTION_VIEW, shareonfb);
+		startActivity(intent);
+	}
+	
+	public void toBack(View vue){
+		Activity previousActivity = AppManager.getAppManager().previousActivity();
+		Intent intent = new Intent(this, previousActivity.getClass());
+		startActivity(intent);
+	}	
 
 	private void displayListView() {
 		// TODO Auto-generated method stub
@@ -108,6 +123,8 @@ public class CommentaireActivity extends ListActivity {
 
 		});
 	}
+	
+	
 
 	public void toComment(View vue) {
 		Intent intention = new Intent(this, Commenter.class);
